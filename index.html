@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>A little something for Sakthi 🦋</title>
+
+<!-- Open Graph / WhatsApp / Instagram preview -->
+<meta property="og:title" content="A little something for Sakthi 🦋"/>
+<meta property="og:description" content="A page made just for you, with all my love 💕"/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=1200&q=80"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="A little something for Sakthi 🦋"/>
+<meta name="twitter:description" content="A page made just for you, with all my love 💕"/>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet"/>
+
+<style>
+:root {
+  --pink:       #f7c5d5;
+  --pink-deep:  #e8799a;
+  --pink-pale:  #fce8f0;
+  --lavender:   #d8c8f0;
+  --lav-deep:   #9b7fd4;
+  --lav-pale:   #ede4f8;
+  --cream:      #fdf6fb;
+  --text:       #4a2040;
+  --text-soft:  #9b6080;
+  --white:      #ffffff;
+  --gold:       #e8c97a;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  background: var(--cream);
+  color: var(--text);
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* ── DREAMY BG ── */
+#bg-canvas {
+  position: fixed; inset: 0; z-index: 0;
+  background: linear-gradient(160deg,
+    #fde8f2 0%, #ede0ff 35%, #fce4ee 60%, #e8ddf8 100%);
+  overflow: hidden;
+}
+.bg-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.45;
+  animation: blobDrift ease-in-out infinite alternate;
+}
+@keyframes blobDrift {
+  from { transform: translate(0,0) scale(1); }
+  to   { transform: translate(var(--tx,30px),var(--ty,20px)) scale(var(--ts,1.1)); }
+}
+
+/* ── BUTTERFLY ── */
+.butterfly {
+  position: fixed;
+  z-index: 5;
+  pointer-events: none;
+  transform-style: preserve-3d;
+  perspective: 400px;
+  animation: btflyDrift linear infinite;
+}
+.butterfly .wings {
+  position: relative;
+  transform-style: preserve-3d;
+  animation: wingFlap 0.7s ease-in-out infinite alternate;
+}
+@keyframes wingFlap {
+  from { transform: rotateY(0deg);   }
+  to   { transform: rotateY(52deg); }
+}
+.butterfly .wing {
+  position: absolute;
+  width: 38px; height: 28px;
+  border-radius: 50% 50% 50% 0 / 60% 60% 40% 40%;
+  opacity: 0.82;
+  box-shadow: inset 0 0 8px rgba(255,255,255,0.4);
+}
+.butterfly .wing.left  {
+  right: 0; top: 0;
+  transform-origin: right center;
+  background: radial-gradient(ellipse at 70% 40%, #f9b8d0, #c88ec8 60%, #9b5fc0 100%);
+  border: 1px solid rgba(255,255,255,0.3);
+  animation: leftWing 0.7s ease-in-out infinite alternate;
+}
+.butterfly .wing.right {
+  left: 0; top: 0;
+  transform: scaleX(-1);
+  transform-origin: left center;
+  background: radial-gradient(ellipse at 70% 40%, #f9b8d0, #c88ec8 60%, #9b5fc0 100%);
+  border: 1px solid rgba(255,255,255,0.3);
+  animation: rightWing 0.7s ease-in-out infinite alternate;
+}
+.butterfly .wing.lower-left {
+  right: 0; top: 16px;
+  width: 28px; height: 22px;
+  border-radius: 50% 0 50% 50% / 40% 40% 60% 60%;
+  background: radial-gradient(ellipse at 30% 60%, #f4a8c4, #b87cc0 70%);
+  animation: leftWing 0.7s ease-in-out infinite alternate;
+}
+.butterfly .wing.lower-right {
+  left: 0; top: 16px;
+  width: 28px; height: 22px;
+  transform: scaleX(-1);
+  border-radius: 50% 0 50% 50% / 40% 40% 60% 60%;
+  background: radial-gradient(ellipse at 30% 60%, #f4a8c4, #b87cc0 70%);
+  animation: rightWing 0.7s ease-in-out infinite alternate;
+}
+@keyframes leftWing  { from{transform: perspective(200px) rotateY(0)}  to{transform: perspective(200px) rotateY(55deg)}  }
+@keyframes rightWing { from{transform: perspective(200px) scaleX(-1) rotateY(0)} to{transform: perspective(200px) scaleX(-1) rotateY(55deg)} }
+.butterfly .body {
+  position: absolute;
+  width: 5px; height: 22px;
+  background: linear-gradient(to bottom, #7b3fa0, #4a1060);
+  border-radius: 50%;
+  left: 50%; top: 0;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+@keyframes btflyDrift {
+  0%   { left: -6%; top: 30%; transform: translateY(0)  rotateZ(-5deg); }
+  25%  { top: 18%; transform: translateY(-30px) rotateZ(3deg); }
+  50%  { left: 55%; top: 40%; transform: translateY(20px) rotateZ(-3deg); }
+  75%  { top: 25%; transform: translateY(-15px) rotateZ(5deg); }
+  100% { left: 108%; top: 35%; transform: translateY(0) rotateZ(-2deg); }
+}
+
+/* tiny bg butterflies */
+.btfly-sm .wing { width:22px; height:16px; }
+.btfly-sm .wing.lower-left,.btfly-sm .wing.lower-right { width:16px; height:13px; }
+.btfly-sm .body { width:3px; height:14px; }
+
+/* ── LAYOUT ── */
+section { position: relative; z-index: 2; }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1.5rem 4rem;
+}
+.petal-ring {
+  position: absolute;
+  width: 420px; height: 420px;
+  border-radius: 50%;
+  border: 1px solid rgba(232,121,154,0.18);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-52%);
+  animation: ringPulse 4s ease-in-out infinite alternate;
+}
+.petal-ring:nth-child(2){ width:580px;height:580px;border-color:rgba(155,127,212,0.12);animation-delay:1s; }
+.petal-ring:nth-child(3){ width:720px;height:720px;border-color:rgba(232,121,154,0.07);animation-delay:2s; }
+@keyframes ringPulse {
+  from { opacity:0.5; transform:translate(-50%,-52%) scale(0.97); }
+  to   { opacity:1;   transform:translate(-50%,-52%) scale(1.02); }
+}
+.hero-eyebrow {
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--lav-deep);
+  margin-bottom: 1.4rem;
+  opacity: 0;
+  animation: fadeUp 1s 0.3s forwards;
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 10vw, 7rem);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--text);
+  opacity: 0;
+  animation: fadeUp 1s 0.6s forwards;
+  margin-bottom: 1rem;
+}
+.hero-title em { font-style: italic; color: var(--pink-deep); }
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.5vw, 1.55rem);
+  color: var(--text-soft);
+  max-width: 520px;
+  line-height: 1.75;
+  opacity: 0;
+  animation: fadeUp 1s 1s forwards;
+  margin-bottom: 2.5rem;
+}
+.scroll-hint {
+  font-size: 11px; letter-spacing:3px; text-transform:uppercase;
+  color: var(--lav-deep); opacity: 0;
+  animation: fadeUp 1s 1.6s forwards;
+}
+.scroll-hint::after {
+  content:''; display:block; width:1px; height:40px;
+  background:linear-gradient(to bottom, var(--lav-deep), transparent);
+  margin: 10px auto 0;
+  animation: scrollLine 1.5s ease-in-out infinite;
+}
+@keyframes scrollLine { 0%,100%{opacity:0.3;transform:scaleY(0.7)} 50%{opacity:1;transform:scaleY(1)} }
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(22px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* ── CLICK ME BUTTON ── */
+#surprise-section {
+  padding: 6rem 1.5rem;
+  text-align: center;
+}
+.section-label {
+  font-size:11px; letter-spacing:4px; text-transform:uppercase;
+  color:var(--lav-deep); margin-bottom:1rem; display:block;
+}
+.section-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,5vw,3.2rem);
+  font-weight:300; color:var(--text);
+  margin-bottom:2.5rem; line-height:1.2;
+}
+#click-btn {
+  display: inline-block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--pink-deep) 0%, var(--lav-deep) 100%);
+  border: none;
+  border-radius: 60px;
+  padding: 1rem 3rem;
+  cursor: pointer;
+  position: relative;
+  letter-spacing: 1px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 0 30px rgba(232,121,154,0.45), 0 0 60px rgba(155,127,212,0.25);
+  animation: glowPulse 2.5s ease-in-out infinite;
+}
+@keyframes glowPulse {
+  0%,100% { box-shadow: 0 0 25px rgba(232,121,154,0.4), 0 0 50px rgba(155,127,212,0.2); }
+  50%      { box-shadow: 0 0 45px rgba(232,121,154,0.7), 0 0 90px rgba(155,127,212,0.45); }
+}
+#click-btn:hover { transform:scale(1.04); }
+#click-btn:active { transform:scale(0.97); }
+
+/* ── MODAL ── */
+#modal-overlay {
+  display:none;
+  position:fixed; inset:0; z-index:100;
+  background:rgba(60,15,55,0.55);
+  backdrop-filter:blur(8px);
+  align-items:center; justify-content:center; padding:1.5rem;
+}
+#modal-overlay.open { display:flex; }
+#modal-box {
+  background: linear-gradient(150deg, #fff8fb, #f5ebff);
+  border-radius: 24px;
+  border: 1px solid rgba(232,121,154,0.25);
+  max-width: 520px; width:100%;
+  padding: 3rem 2.5rem;
+  text-align: center;
+  position:relative;
+  box-shadow: 0 30px 80px rgba(100,30,80,0.2);
+  animation: modalIn 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;
+}
+@keyframes modalIn {
+  from { opacity:0; transform:scale(0.85) translateY(20px); }
+  to   { opacity:1; transform:scale(1) translateY(0); }
+}
+#modal-close {
+  position:absolute; top:1.2rem; right:1.4rem;
+  background:none; border:none; cursor:pointer;
+  font-size:1.4rem; color:var(--text-soft);
+  transition:color 0.2s;
+}
+#modal-close:hover { color:var(--pink-deep); }
+.modal-emoji { font-size:3rem; display:block; margin-bottom:1rem; }
+.modal-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem; font-weight:300;
+  color:var(--text); margin-bottom:1.5rem;
+}
+#modal-message {
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:1.15rem; line-height:1.85;
+  color:var(--text-soft);
+  min-height:120px;
+}
+#modal-message .word {
+  display:inline-block;
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity 0.3s ease, transform 0.3s ease;
+  margin-right:4px;
+}
+#modal-message .word.visible { opacity:1; transform:translateY(0); }
+.modal-hearts { margin-top:1.5rem; font-size:1.3rem; letter-spacing:6px; }
+
+/* ── GALLERY ── */
+#gallery-section {
+  padding: 6rem 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.gallery-grid {
+  columns: 3 200px;
+  column-gap: 16px;
+}
+.gallery-item {
+  break-inside: avoid;
+  margin-bottom: 16px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+.gallery-item img {
+  width:100%; display:block;
+  transition: transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.gallery-item:hover img { transform: scale(1.06); }
+.gallery-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 0.6rem 0.9rem;
+  background: linear-gradient(transparent, rgba(74,32,64,0.6));
+  color: #fff;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.gallery-item:hover .gallery-caption { opacity:1; transform:translateY(0); }
+
+/* ── LOVE NOTE SECTION ── */
+#lovenote-section {
+  padding: 6rem 1.5rem;
+  text-align: center;
+}
+.lovenote-card {
+  max-width: 680px; margin: 0 auto;
+  background: linear-gradient(135deg, #fff0f6, #f0e8ff);
+  border: 1px solid rgba(155,127,212,0.2);
+  border-radius: 28px;
+  padding: 4rem 3rem;
+  position:relative;
+  box-shadow: 0 20px 60px rgba(100,40,90,0.08);
+}
+.lovenote-card::before {
+  content: '\201C';
+  font-family:'Cormorant Garamond',serif;
+  font-size:9rem; line-height:0.8;
+  color:var(--pink); position:absolute;
+  top:2rem; left:2rem;
+}
+.lovenote-text {
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:clamp(1.2rem,2.5vw,1.5rem);
+  line-height:1.9;
+  color:var(--text);
+}
+.lovenote-sig {
+  margin-top:2rem;
+  font-size:0.85rem;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--lav-deep);
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 3rem 1.5rem;
+  text-align:center;
+  font-size:0.8rem;
+  color:var(--text-soft);
+  letter-spacing:2px;
+  text-transform:uppercase;
+  position:relative; z-index:2;
+}
+
+/* ── CONFETTI ── */
+.confetti-piece {
+  position:fixed;
+  top:-10px;
+  width:8px; height:8px;
+  border-radius:2px;
+  opacity:0;
+  pointer-events:none;
+  z-index:200;
+  animation:confettiFall linear forwards;
+}
+@keyframes confettiFall {
+  0%  { opacity:1; transform:translateY(0) rotate(0deg); }
+  100%{ opacity:0; transform:translateY(100vh) rotate(720deg); }
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:640px){
+  .gallery-grid { columns:2 140px; }
+  .lovenote-card { padding:3rem 1.5rem; }
+  #modal-box { padding:2rem 1.5rem; }
+  .petal-ring { display:none; }
+}
+@media(max-width:380px){
+  .gallery-grid { columns:1; }
+}
+</style>
+</head>
+<body>
+
+<!-- BG CANVAS -->
+<div id="bg-canvas">
+  <div class="bg-blob" style="width:500px;height:500px;top:-100px;left:-100px;background:#f9c8df;--tx:40px;--ty:30px;--ts:1.15;animation-duration:9s;"></div>
+  <div class="bg-blob" style="width:400px;height:400px;top:30%;right:-80px;background:#d8c5f5;--tx:-30px;--ty:50px;--ts:1.08;animation-duration:12s;"></div>
+  <div class="bg-blob" style="width:350px;height:350px;bottom:-60px;left:25%;background:#fce0ee;--tx:20px;--ty:-40px;--ts:1.1;animation-duration:10s;"></div>
+  <div class="bg-blob" style="width:280px;height:280px;top:55%;left:5%;background:#e8d8f8;--tx:50px;--ty:-20px;--ts:1.12;animation-duration:14s;"></div>
+</div>
+
+<!-- BUTTERFLIES -->
+<div id="butterflies-container"></div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="petal-ring"></div>
+  <div class="petal-ring"></div>
+  <div class="petal-ring"></div>
+
+  <p class="hero-eyebrow">with love, always &amp; forever</p>
+  <h1 class="hero-title">For you,<br><em>Sakthi</em> 🦋</h1>
+  <p class="hero-sub">
+    In a world full of moments, every one of mine<br>
+    is more beautiful because you are in it.
+  </p>
+  <span class="scroll-hint">Scroll</span>
+</section>
+
+<!-- SURPRISE BUTTON -->
+<section id="surprise-section">
+  <span class="section-label">A secret waiting for you</span>
+  <h2 class="section-title">Something I want you to know</h2>
+  <button id="click-btn" onclick="triggerSurprise()">Click me 🦋</button>
+</section>
+
+<!-- MODAL -->
+<div id="modal-overlay" onclick="closeModal(event)">
+  <div id="modal-box">
+    <button id="modal-close" onclick="closeModalDirect()">✕</button>
+    <span class="modal-emoji">🦋</span>
+    <h3 class="modal-title">For Sakthi, with all my heart</h3>
+    <p id="modal-message"></p>
+    <div class="modal-hearts">💖 💗 💝</div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<section id="gallery-section">
+  <span class="section-label" style="display:block;text-align:center;margin-bottom:0.5rem;">moments frozen in time</span>
+  <h2 class="section-title" style="text-align:center;">Our Memories</h2>
+
+  <div class="gallery-grid" id="gallery-grid">
+    <!-- photos inserted by JS -->
+  </div>
+</section>
+
+<!-- LOVE NOTE -->
+<section id="lovenote-section">
+  <span class="section-label">from me, to you</span>
+  <h2 class="section-title">Always &amp; Forever</h2>
+  <div class="lovenote-card">
+    <p class="lovenote-text">
+      You are the soft light that finds me even on my darkest days.
+      The laugh I look forward to. The warmth I come home to.
+      I never knew how full a heart could feel until I found you.
+      <br><br>
+      Every small thing — the way you smile, the sound of your voice,
+      the way you make everything feel okay — I hold all of it like treasure.
+      <br><br>
+      Thank you for being mine. I am the luckiest.
+    </p>
+    <p class="lovenote-sig">— Yours, always 🌸</p>
+  </div>
+</section>
+
+<footer>
+  Made with 💗 just for Sakthi &nbsp;·&nbsp; 🦋
+</footer>
+
+<script>
+/* ── BUTTERFLIES ── */
+(function(){
+  const container = document.getElementById('butterflies-container');
+
+  function makeBfly(opts){
+    const b = document.createElement('div');
+    b.className = 'butterfly' + (opts.small ? ' btfly-sm' : '');
+
+    const wSize  = opts.small ? 22 : 38;
+    const wlSize = opts.small ? 16 : 28;
+    const bH     = opts.small ? 14 : 22;
+    const bW     = opts.small ?  3 :  5;
+
+    b.style.cssText = `
+      position:fixed; z-index:5; pointer-events:none;
+      animation: btflyDrift ${opts.dur}s linear ${opts.delay}s infinite;
+      top:${opts.top}%;
+      width:${wSize*2+10}px; height:${wlSize+16}px;
+    `;
+
+    const wings = document.createElement('div');
+    wings.className = 'wings';
+    wings.style.cssText = `position:relative;width:${wSize*2+10}px;height:${wlSize+16}px;`;
+
+    const makeWing = (cls, extra='') => {
+      const w = document.createElement('div');
+      w.className = 'wing ' + cls;
+      w.style.cssText = extra;
+      return w;
+    };
+
+    wings.appendChild(makeWing('left', `width:${wSize}px;height:${wSize*0.74}px;`));
+    wings.appendChild(makeWing('right', `width:${wSize}px;height:${wSize*0.74}px;`));
+    wings.appendChild(makeWing('lower-left', `width:${wlSize}px;height:${wlSize*0.82}px;top:${wSize*0.45}px`));
+    wings.appendChild(makeWing('lower-right', `width:${wlSize}px;height:${wlSize*0.82}px;top:${wSize*0.45}px`));
+
+    const body = document.createElement('div');
+    body.className = 'body';
+    body.style.cssText = `position:absolute;width:${bW}px;height:${bH}px;left:50%;transform:translateX(-50%);z-index:2;background:linear-gradient(to bottom,#7b3fa0,#4a1060);border-radius:50%;`;
+    wings.appendChild(body);
+
+    b.appendChild(wings);
+    container.appendChild(b);
+  }
+
+  // Main big butterfly
+  makeBfly({ top:28, dur:28, delay:0, small:false });
+
+  // Smaller drifting ones with varied timing
+  const smalls = [
+    { top:15, dur:34, delay:3  },
+    { top:60, dur:26, delay:8  },
+    { top:42, dur:38, delay:14 },
+    { top:75, dur:30, delay:5  },
+    { top:8,  dur:45, delay:18 },
+  ];
+  smalls.forEach(s => makeBfly({ ...s, small:true }));
+})();
+
+/* ── GALLERY ── */
+(function(){
+  const photos = [
+    { src:'./asserts/image-1.jpeg', caption:'When it all began 🌸' },
+    { src:'./asserts/image-5.jpg', caption:'Just us 💕' },
+    { src:'./asserts/image-6.jpeg', caption:'Every little adventure 🌿' },
+    { src:'./asserts/image-7.jpg', caption:'Always by your side 🏔️' },
+    { src:'./asserts/image-8.jpeg', caption:'Moments like these 🐾' },
+    { src:'./asserts/image-2.jpeg', caption:'My favourite smile 😻' },
+    { src: 'asserts/image-3.jpeg', caption:'You are my sunshine ☀️' },
+    { src:'./asserts/image-4.jpeg', caption:'Golden evenings ✨' },
+    // { src:'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80', caption:'Shared tastes 🍽️' },
+  ];
+
+  const grid = document.getElementById('gallery-grid');
+  photos.forEach(p => {
+    const item = document.createElement('div');
+    item.className = 'gallery-item';
+    item.innerHTML = `
+      <img src="${p.src}" alt="${p.caption}" loading="lazy"/>
+      <span class="gallery-caption">${p.caption}</span>`;
+    grid.appendChild(item);
+  });
+})();
+
+/* ── SURPRISE BUTTON ── */
+const personalMessage = "Sakthi, I want you to know that every single day with you is a gift I will never take for granted. You are everything — the warmth in my mornings, the peace in my evenings, and every beautiful thing in between. There is no version of happiness I can imagine that doesn't have you in it. I love you more than any words could ever hold. Thank you for being mine. 🦋";
+
+function triggerSurprise(){
+  launchConfetti();
+  playChime();
+  openModal();
+}
+
+function playChime(){
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const notes = [523, 659, 784, 1047];
+    notes.forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0, ctx.currentTime + i*0.18);
+      gain.gain.linearRampToValueAtTime(0.18, ctx.currentTime + i*0.18 + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i*0.18 + 0.7);
+      osc.start(ctx.currentTime + i*0.18);
+      osc.stop(ctx.currentTime + i*0.18 + 0.75);
+    });
+  } catch(e){}
+}
+
+function launchConfetti(){
+  const colors = ['#f9b8d0','#d8c5f5','#fce0ee','#f7c5d5','#c88ec8','#e8c97a','#ffcce0'];
+  for(let i=0;i<80;i++){
+    const p = document.createElement('div');
+    p.className = 'confetti-piece';
+    p.style.left = Math.random()*100 + 'vw';
+    p.style.background = colors[Math.floor(Math.random()*colors.length)];
+    p.style.width = (6 + Math.random()*8) + 'px';
+    p.style.height = (6 + Math.random()*8) + 'px';
+    p.style.borderRadius = Math.random()>0.5 ? '50%' : '2px';
+    p.style.animationDuration = (2 + Math.random()*3) + 's';
+    p.style.animationDelay = (Math.random()*1.5) + 's';
+    document.body.appendChild(p);
+    p.addEventListener('animationend', () => p.remove());
+  }
+}
+
+function openModal(){
+  const overlay = document.getElementById('modal-overlay');
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  revealMessage();
+}
+
+function revealMessage(){
+  const el = document.getElementById('modal-message');
+  el.innerHTML = '';
+  const words = personalMessage.split(' ');
+  words.forEach((w,i) => {
+    const span = document.createElement('span');
+    span.className = 'word';
+    span.textContent = w;
+    el.appendChild(span);
+    setTimeout(() => span.classList.add('visible'), 120 + i*80);
+  });
+}
+
+function closeModal(e){
+  if(e.target === document.getElementById('modal-overlay')) closeModalDirect();
+}
+function closeModalDirect(){
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ── INTERSECTION OBSERVER (fade in sections) ── */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('#surprise-section, #gallery-section, #lovenote-section').forEach(s => {
+  s.style.opacity = '0';
+  s.style.transform = 'translateY(30px)';
+  s.style.transition = 'opacity 0.9s ease, transform 0.9s ease';
+  observer.observe(s);
+});
+</script>
+</body>
+</html>
